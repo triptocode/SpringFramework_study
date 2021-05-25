@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kk.spring03.entity.MemberDto;
 
-@Controller
+@Controller 
 @RequestMapping("/member")
 
 public class MemberController {
@@ -51,14 +51,13 @@ public class MemberController {
 	// 방법3
 	
  @PostMapping("/signup")
- public String join2(@ModelAttribute MemberDto mdto) {
+ public String join2(@ModelAttribute MemberDto mdto1) {
 	   
-	    System.out.println("아이디"+mdto.getId());
-		System.out.println("패스워드"+mdto.getPw());
-		System.out.println("닉네임 " +mdto.getNick());
+	    System.out.println("아이디"+mdto1.getId());
+		System.out.println("패스워드"+mdto1.getPw());
+		System.out.println("닉네임 " +mdto1.getNick());
 
-		return "welcome";
- }
+		return "welcome"; }
  
 }
 
