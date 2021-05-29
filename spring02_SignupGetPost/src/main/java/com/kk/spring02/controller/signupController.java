@@ -17,6 +17,9 @@ public class signupController {
 	public String signup1() {
 		return"join";
 	}
+	
+	// 같은 하나의 url 경로 /signup 에 두가지 모두 보여줄때 GET, POST 사용
+	
 	@RequestMapping	(value= "/signup", method=RequestMethod.POST)
 	public String signup2() {
 		return "welcome";
