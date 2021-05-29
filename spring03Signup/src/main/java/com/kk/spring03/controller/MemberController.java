@@ -20,10 +20,10 @@ public class MemberController {
 	//@RequestMapping(value="/signup", method=RequestMethod.GET) 
 	@GetMapping("/signup")
 	public String join1(){
-		return "join"; }
+		return "join"; } // view 파일명으로 경로설정  
 
 	
-	// 방법1 	
+	// 포스트맵핑 방법1 	
 // @PostMapping("/signup")
 
 //	  public String join2(HttpServletRequest req) {
@@ -37,7 +37,7 @@ public class MemberController {
 //		return "welcome";
 //	}
 	
-      // 방법2	
+	// 포스트맵핑 방법2 	
 //	@PostMapping("/signup")
 //	public String join2(@RequestParam String id,
 //			            @RequestParam String pw,
@@ -48,7 +48,7 @@ public class MemberController {
 //		System.out.println("닉네임 " + nick);
 //		return "welcome";}
 	
-	// 방법3
+	// 포스트맵핑 방법3
 	
  @PostMapping("/signup")
  public String join2(@ModelAttribute MemberDto mdto1) {
@@ -57,7 +57,7 @@ public class MemberController {
 		System.out.println("패스워드"+mdto1.getPw());
 		System.out.println("닉네임 " +mdto1.getNick());
 
-		return "welcome"; }
+		return "welcome"; } 
  
 }
 
