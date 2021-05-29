@@ -22,7 +22,7 @@ public class CheckboxController {
 	@PostMapping("/fruit2")
 	public String threefruit2(
 			//@RequestParam String[] fruit) {
-			 @RequestParam List <String> fruit) {
+			 @RequestParam List <String> fruit) {   //jsp에 input name ="fruit"를 변수로 사용한다 
 		for(String f: fruit) {
 			System.out.println("f="+f);
 		}
