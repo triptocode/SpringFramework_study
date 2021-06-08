@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mn">
+<!-- <insert id="i1" parameterType="com.kh.spring09.entity.MenuDto"> -->
+	 <insert id="i1" parameterType="mdto">
+		INSERT INTO menu ( name, price ) 
+		VALUES( #{name}, #{price} )
+	 </insert>
+	<select id="i2" resultType="mdto">
+		SELECT * FROM menu ORDER BY name ASC
+	</select>
+</mapper>
