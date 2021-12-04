@@ -17,7 +17,6 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 	<context:component-scan base-package="com.kk.spring07" />	
 	
 	<!-- DispatcherServlet 이 알아야할 설정 등록 -->
-	
 	<!--  @Controller 같은 annotation 활성화 -->
 	<annotation-driven />
 
@@ -28,17 +27,6 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 
 <resources location= "/resources/" mapping="/res/**"> </resources>
 
-
-
-
-	<!-- 
-		데이터베이스 도구를 등록
-		- 연결 도구 : 
-			org.springframework.jdbc.datasource.DriverManagerDataSource
-			org.apache.commons.dbcp2.BasicDataSource
-		- 명령 도구
-			org.springframework.jdbc.core.JdbcTemplate
-	 -->
 	<beans:bean id="driverManager" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"></beans:property>
 		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></beans:property>

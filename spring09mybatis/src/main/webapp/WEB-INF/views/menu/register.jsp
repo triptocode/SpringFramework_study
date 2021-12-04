@@ -4,9 +4,9 @@
 
 
 <form action = rg2 method = POST>
-이름: <input type = "text" , name= "name">
+이름: <input type = "text"  name= "name">
 <br><br>
-가격: <input type = "text", name ="price">원
+가격: <input type = "text" name ="price">원
 <br><br>
-<input type = "submit" , value = "등록">
+<input type = "submit"  value = "등록">
 </form>>

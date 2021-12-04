@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>회사웹주소</groupId>
-	<artifactId>앱명칭</artifactId>
-	<name>프로젝트명</name>
+	<groupId>com.kk</groupId>
+	<artifactId>spring10</artifactId>
+	<name>spring10homepage</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -119,6 +119,42 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>        
+		
+		
+		
+		<!-- 오라클 드라이버 -->
+		<dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc8</artifactId>
+		    <version>19.7.0.0</version>
+		</dependency>
+		
+		<!-- 스프링에서 JDBC를 수행하기 위해 필요한 의존성 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.7.0</version>
+		</dependency>    
+		
+		<!-- mybatis dependency -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.0.5</version>
+		</dependency>
+		
+		
 	</dependencies>
     <build>
         <plugins>
