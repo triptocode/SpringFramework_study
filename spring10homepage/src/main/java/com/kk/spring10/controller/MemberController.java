@@ -24,14 +24,20 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(@ModelAttribute MemberDto memberDto) {
-		sqlSession.insert("mnMember.insertJoin", memberDto);
+		
+		MemberDto findId = sqlSession.selectOne("mnMember.siFindId", memberDto.getMember_id()); 
+		if(findId==null) {
+		   sqlSession.insert("mnMember.isJoin", memberDto);
 		return "redirect:join_finish";
+		}
+		
+		else { 
+			return "redirect:join?error";
+		}
 	}
 	
 	@GetMapping("/join_finish")
 	public String joinFinish(){
-		return "member/join_finish";
-	}
-	
-
+		return "member/join_?error";
+	}	
 }

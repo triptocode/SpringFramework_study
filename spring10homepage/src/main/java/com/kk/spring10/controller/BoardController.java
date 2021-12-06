@@ -19,8 +19,8 @@ public class BoardController {
 
 	@GetMapping("/list")
 	public String boardList(Model model)
-	{ List<BoardDto> list =sqlSession.selectList("mnBoard.siBoardList");
-	model.addAttribute("modelList",list);
+	{ List<BoardDto> blist =sqlSession.selectList("mnBoard.siBoardList");
+	model.addAttribute("modelList",blist);
 	
 	return "board/list";
 	}
