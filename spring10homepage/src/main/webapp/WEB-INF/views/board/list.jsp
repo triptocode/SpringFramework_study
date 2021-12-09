@@ -35,21 +35,22 @@ fmt:formatDate : Date 형을 받아서 원하는 포멧으로 날짜 형태를 �
 	</tbody>
 </table>
 
-<!-- 검색창 구현하기
+
+
+<!-- 검색창 구현하기  action 과 method 그리고 URI 관계  
  BoardController의 PostMapping uri 로 form 데이터가 처리되게 연결한다
   action="PostMapping의 uri 명칭인 search" 
   method ="controller에서 search는 PostMapping이라서 post" -->
 <form action="search" method="post">
-	
-	<select name="type">
-		<option value="board_title" ${param.type == 'board_title' ? 'selected':''}>제목</option>
-		<option value="board_writer" ${param.type == 'board_writer' ? 'selected':''}>작성자</option>
+<!-- select name : 컨트롤러의 @RequestParam String type 과  일치해야한다  --> 	
+<!-- select name="xtype" 으로 잘못 입력시 : 404 Required String parameter 'type' is not present -->
+	<select name="type">  
+<!-- option value="xboard_title"으로 잘못 입력시 : SQLSyntaxErrorException-->	
+	<option value="board_title" ${param.type == 'board_title' ? 'selected':''}>제목</option>
+	<option value="board_writer" ${param.type == 'board_writer' ? 'selected':''}>작성자</option>
 	</select>
 	
 	<input type="text" name="keyword" placeholder="검색어" value="${param.keyword}">
-	<input type="submit" value="검색">
-	
+	<!--input name="xkeyword"으로 잘못 입력시 : 404 Required String parameter 'keyword' is not present -->
+	<input type="submit" value="검색">	
 </form>
-
-		
-		
