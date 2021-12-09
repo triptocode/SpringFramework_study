@@ -47,7 +47,7 @@ fmt:formatDate : Date 형을 받아서 원하는 포멧으로 날짜 형태를 �
 	<select name="type">  
 <!-- option value="xboard_title"으로 잘못 입력시 : SQLSyntaxErrorException-->	
 	<option value="board_title" ${param.type == 'board_title' ? 'selected':''}>제목</option>
-	<option value="board_writer" ${param.type == 'board_writer' ? 'selected':''}>작성자</option>
+	<option value="board_writer"${param.type == 'board_writer' ? 'selected':''} >작성자</option>
 	</select>
 	
 	<input type="text" name="keyword" placeholder="검색어" value="${param.keyword}">

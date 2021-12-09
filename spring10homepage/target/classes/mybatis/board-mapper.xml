@@ -9,9 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id = "siBoardList" resultType = "typeBoardDto">   
   SELECT * FROM board ORDER BY board_no ASC
   </select>
-  
+  <!-- 검색창 구현 -->
   <select id = "siBoardSearch" resultType="typeBoardDto" parameterType="map">
   SELECT * FROM board WHERE instr(${type},#{keyword}) >0
-  ORDER BY board_no DESC
+  ORDER BY board_no ASC
   </select>
 </mapper>
