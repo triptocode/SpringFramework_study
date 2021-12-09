@@ -44,8 +44,9 @@ fmt:formatDate : Date 형을 받아서 원하는 포멧으로 날짜 형태를 �
 <form action="search" method="post">
 <!-- select name : 컨트롤러의 @RequestParam String type 과  일치해야한다  --> 	
 <!-- select name="xtype" 으로 잘못 입력시 : 404 Required String parameter 'type' is not present -->
-	<select name="type">  
+	<select name="type">   <!--name="키", value="값" : 즉 type이 파라미터 키,  board_title이 값으로 controller에 전달 --> 
 <!-- option value="xboard_title"으로 잘못 입력시 : SQLSyntaxErrorException-->	
+<!-- 삼항연사자인 ${param.type == 'board_writer' ? 'selected':''}를 안넣으면 작성자로 검색시, 제목으로 옵션 바뀜 -->
 	<option value="board_title" ${param.type == 'board_title' ? 'selected':''}>제목</option>
 	<option value="board_writer"${param.type == 'board_writer' ? 'selected':''} >작성자</option>
 	</select>
