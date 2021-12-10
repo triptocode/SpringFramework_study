@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   ORDER BY board_no ASC
   </select>
   
-  <!-- 조회 및 검색창 통합구현  -->
+  <!-- 조회 및 검색창 통합구현 <if test= > 조건문 추가! -->
     <select id = "siListSearch" resultType="typeBoardDto" 
   parameterType="map">
   SELECT * FROM board 
