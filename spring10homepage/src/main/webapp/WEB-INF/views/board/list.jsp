@@ -41,16 +41,20 @@ fmt:formatDate : Date 형을 받아서 원하는 포멧으로 날짜 형태를 �
  BoardController의 PostMapping uri 로 form 데이터가 처리되게 연결한다
   action="PostMapping의 uri 명칭인 search" 
   method ="controller에서 search는 PostMapping이라서 post" -->
-<form action="search" method="post">
-<!-- select name : 컨트롤러의 @RequestParam String type 과  일치해야한다  --> 	
+  
+<!--<form action="search" method="post"> 대신에
+ 아래처럼 컨트롤러의 listSearch Uri의 메서드(조회 및 검색기능 통합)를 활용하면 
+ boardList와 boardSearch 두개 삭제 가능해져서 코드가 간결해짐 -->
+<form action="listSearch" method="post">
+<!-- select name="type": 컨트롤러의 @RequestParam String type 과  일치해야한다  --> 	
 <!-- select name="xtype" 으로 잘못 입력시 : 404 Required String parameter 'type' is not present -->
-	<select name="type">   <!--name="키", value="값" : 즉 type이 파라미터 키,  board_title이 값으로 controller에 전달 --> 
-<!-- option value="xboard_title"으로 잘못 입력시 : SQLSyntaxErrorException-->	
-<!-- 삼항연사자인 ${param.type == 'board_writer' ? 'selected':''}를 안넣으면 작성자로 검색시, 제목으로 옵션 바뀜 -->
+<!--(name키 = type, value값="board_title") type이라는 키로  value값board_title(옵션선택시)이 묶여서  함께-> 컨트롤러의  @RequestParam String type에 전달  --> 
+	<select name="type">   
 	<option value="board_title" ${param.type == 'board_title' ? 'selected':''}>제목</option>
 	<option value="board_writer"${param.type == 'board_writer' ? 'selected':''} >작성자</option>
 	</select>
-	
+<!-- option value="xboard_title"으로 잘못 입력시 : SQLSyntaxErrorException-->	
+<!-- 삼항연사자인 ${param.type == 'board_writer' ? 'selected':''}를 안넣으면 작성자로 검색시, 제목으로 옵션 바뀜 -->	
 	<input type="text" name="keyword" placeholder="검색어" value="${param.keyword}">
 	<!--input name="xkeyword"으로 잘못 입력시 : 404 Required String parameter 'keyword' is not present -->
 	<input type="submit" value="검색">	

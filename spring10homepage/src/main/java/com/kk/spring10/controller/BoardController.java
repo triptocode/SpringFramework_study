@@ -23,6 +23,7 @@ public class BoardController {
 
 	@GetMapping("/list")
 	public String boardList(Model model)
+	
 	{ List<BoardDto> blist =sqlSession.selectList("mnBoard.siBoardList");
 	model.addAttribute("modelList",blist);
 	// 위의 key값 "modelList"는 JSP파일 items= "${modelList}"와 일치해야 맵핑된다. 
@@ -46,6 +47,24 @@ public class BoardController {
 		// 위의 key값 "modelList"는 JSP파일 items= "${modelList}"와 일치해야 맵핑된다. ;
 		return "board/list";
 	}
+	
+	
+	// 조회 및 검색 통합 구현 : 검색은 안할수도 있으니 required=false 매퍼도 if 조건추가 
+	// Map<String, String> , Map<String, Object> 모두 잘 작동
+	@RequestMapping("/listSearch")
+	public String listAndSearch (@RequestParam (required=false)String type, 
+			                  @RequestParam (required=false)String keyword,
+			                  Model model
+			                  ) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("type",type);
+		map.put("keyword", keyword);
+		List<BoardDto> blist3 = sqlSession.selectList("mnBoard.siListSearch",map);
+        model.addAttribute("modelList", blist3);
+		
+		return "board/list";
+	}
+	
 	
 
 }
