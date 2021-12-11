@@ -1,5 +1,7 @@
 package com.kk.spring10.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,4 +42,11 @@ public class MemberController {
 	public String joinFinish(){
 		return "member/join_?error";
 	}	
+	
+	@GetMapping("/login")
+	public String login() {
+		return "member/login";
+	}
+	
+
 }
