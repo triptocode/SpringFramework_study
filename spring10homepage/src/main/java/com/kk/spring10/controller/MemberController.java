@@ -25,17 +25,17 @@ public class MemberController {
 	}	
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute MemberDto memberDto) {
+public String join(@ModelAttribute MemberDto memberDto) {
 		
-		MemberDto findId = sqlSession.selectOne("mnMember.siFindId", memberDto.getMember_id()); 
-		if(findId==null) {
+     MemberDto findId = 
+	 sqlSession.selectOne("mnMember.siFindId", memberDto.getMember_id()); 
+		
+     if(findId==null) {
 		   sqlSession.insert("mnMember.isJoin", memberDto);
 		return "redirect:join_finish";
 		}
 		
-		else { 
-			return "redirect:join?error";
-		}
+	 else { return "redirect:join?error"; }
 	}
 	
 	@GetMapping("/join_finish")
@@ -45,8 +45,32 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public String login() {
+		
 		return "member/login";
 	}
 	
+	@PostMapping("/login")
+	public String login( @ModelAttribute MemberDto memberDto, 
+			HttpSession session) {
+	
+// 첫번째 로그인 성공시, 실패시  메소드 
+// result >0 크면 로그인 성공 (저장된 디비의 id,pw와 함께 로그인시 (결과화면: result=1)성공
+//		int result =sqlSession.selectOne("mnMember.siLogin1", memberDto);
+//		System.out.println("result="+result);
+//		return "redirect:/";  // localhost:8080/spring10, 즉 홈 메인화면으로 돌아옴
 
+// 두번째 	로그인 성공시, 실패시  메소드 	
+		MemberDto find = 
+				sqlSession.selectOne("mnMember.siLogin2", memberDto);
+		if(find!=null) {//성공
+		session.setAttribute("userinfo", find);
+		return "redirect:/"; // 성공하면 역슬러시 / = 즉, 메인 home화면으로 돌아옴
+		}
+		else {//실패
+			return "redirect:login?error"; //로그인화면으로 다시 돌아옴 
+		}
+	}		
 }
+	
+
+

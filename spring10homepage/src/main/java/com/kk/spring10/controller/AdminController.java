@@ -18,10 +18,14 @@ public class AdminController {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// AdminController ¿Í member-mapper 
+	
 	@GetMapping("/list")
 	public String adminList(Model model) { 
-		List<MemberDto> mlist = sqlSession.selectList("mnMember.siMemberList");
-		model.addAttribute("modelList", mlist);
+		
+	List<MemberDto> memberList =
+			sqlSession.selectList("mnMember.siAdminMemberList");
+	model.addAttribute("modelList", memberList);
 
 		return "admin/list";
 	}

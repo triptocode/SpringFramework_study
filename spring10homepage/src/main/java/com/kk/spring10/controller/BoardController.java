@@ -24,8 +24,9 @@ public class BoardController {
 	@GetMapping("/list")
 	public String boardList(Model model)
 	
-	{ List<BoardDto> blist =sqlSession.selectList("mnBoard.siBoardList");
-	model.addAttribute("modelList",blist);
+	{ List<BoardDto> boardList =
+	         sqlSession.selectList("mnBoard.siBoardList");
+	model.addAttribute("modelList",boardList);
 	// 위의 key값 "modelList"는 JSP파일 items= "${modelList}"와 일치해야 맵핑된다. 
 	return "board/list";
 	}
@@ -42,8 +43,9 @@ public class BoardController {
 		Map<String, String> param = new HashMap<>();
 		param.put("type",type);
 		param.put("keyword", keyword);
-		List<BoardDto> blist2 = sqlSession.selectList("mnBoard.siBoardSearch",param);
-        model.addAttribute("modelList", blist2);
+		List<BoardDto> boardList2 = 
+				sqlSession.selectList("mnBoard.siBoardSearch",param);
+        model.addAttribute("modelList", boardList2);
 		// 위의 key값 "modelList"는 JSP파일 items= "${modelList}"와 일치해야 맵핑된다. ;
 		return "board/list";
 	}
@@ -59,8 +61,8 @@ public class BoardController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("type",type);
 		map.put("keyword", keyword);
-		List<BoardDto> blist3 = sqlSession.selectList("mnBoard.siListSearch",map);
-        model.addAttribute("modelList", blist3);
+		List<BoardDto> boardList3 = sqlSession.selectList("mnBoard.siListSearch",map);
+        model.addAttribute("modelList", boardList3);
 		
 		return "board/list";
 	}
