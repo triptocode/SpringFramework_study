@@ -59,7 +59,7 @@ public String join(@ModelAttribute MemberDto memberDto) {
 //		System.out.println("result="+result);
 //		return "redirect:/";  // localhost:8080/spring10, 즉 홈 메인화면으로 돌아옴
 
-// 두번째 	로그인 성공시, 실패시  메소드 	
+// 두번째 	로그인 성공시, 실패시    - HomeController와  root.jsp 함께보기 
 		MemberDto find = 
 				sqlSession.selectOne("mnMember.siLogin2", memberDto);
 		if(find!=null) {//성공
