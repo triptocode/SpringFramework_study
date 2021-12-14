@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mnMember">
 <!-- 회원가입 페이지 개인정보입력시 DB로 insert 저장 -->
-	<insert id="isJoin" parameterType="typeMemberDto">
+	<insert id="iiJoin" parameterType="typeMemberDto">
 		INSERT INTO member(
 			member_id,
 			member_pw,
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<!-- "java.lang.String" 이지만  string 별칭존재 , mybatis-manual 참고-->
 	<!-- member_id가 String 으로 설정했었기에 parameterType="string"   -->
-	<select id ="siFindId" parameterType="string" >
+	<select id ="siFindId" parameterType="string" resultType="TypeMemberDto">
 	SELECT * FROM member WHERE member_id = #{member_id}
 	</select>
 

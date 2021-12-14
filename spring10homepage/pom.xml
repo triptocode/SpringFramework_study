@@ -154,6 +154,13 @@
 		    <version>2.0.5</version>
 		</dependency>
 		
+			<!-- 1.pom: 암호화 도구 의존성 / 2.servlet-context: 암호화 도구  등록 -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.3.3.RELEASE</version>
+		</dependency>	
+		
 		
 	</dependencies>
     <build>
