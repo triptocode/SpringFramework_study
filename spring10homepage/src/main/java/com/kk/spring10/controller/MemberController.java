@@ -71,17 +71,41 @@ public String join(@ModelAttribute MemberDto memberDto) {
 //		return "redirect:/";  // localhost:8080/spring10, 즉 홈 메인화면으로 돌아옴
 
 // 두번째 방법: 로그인 성공시, 실패시 메소드  - HomeController와  root.jsp 함께보기 
+//		MemberDto find = 
+//				sqlSession.selectOne("mnMember.siLogin2", memberDto);
+//		if(find!=null) {//성공
+//		session.setAttribute("userinfo", find);
+//		return "redirect:/"; // 성공하면 역슬러시 / = 즉, 메인 home화면으로 돌아옴
+//		}
+//		else {//실패
+//			return "redirect:login?error"; //로그인화면으로 다시 돌아옴 
+//		}
+
+
+// 세번째 방법 : 회원가입시 암호화된 pw는 로그인시에도 암호화가 계속되어 같은 사용자여도 암호가 달라지는 문제발생한다.
+		   // 따라서 encoder.matches 를 화용하여 해결한다.
+		   // 이제부터는 새 가입자만 로그인에 성공. 
+		   // 기존에 가입한 id,pw는 로그인 불가해져서 DB에서 DELETE member; commit; 해주기. 
 		MemberDto find = 
-				sqlSession.selectOne("mnMember.siLogin2", memberDto);
-		if(find!=null) {//성공
-		session.setAttribute("userinfo", find);
+				sqlSession.selectOne("mnMember.siFindId", memberDto.getMember_id());
+	if(find!=null) {// 성공, 아이디가 있으면
+			// 아이디가 있으면 비밀번호 비교 수행 (encoder 사용)
+			// encoder.matches(새로 입력pw, 디비에 이미 저장된 PW) --> boolean타입
+			// 아래 메소드 : 참이면 --> pass 에 값 입력
+			boolean pass = encoder.matches(
+					memberDto.getMember_pw(), find.getMember_pw());
+		if(pass) {
+			session.setAttribute("userinfo", find);
 		return "redirect:/"; // 성공하면 역슬러시 / = 즉, 메인 home화면으로 돌아옴
 		}
-		else {//실패
-			return "redirect:login?error"; //로그인화면으로 다시 돌아옴 
+	}
+	
+	// 실패, 그 외의 모든 경우는 에러로 처리 
+	return "redirect:login?error"; //로그인화면으로 다시 돌아옴 
 		}
-	}		
-}
+	}	
+	
+
 	
 
 
