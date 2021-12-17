@@ -44,12 +44,13 @@ public String join(@ModelAttribute MemberDto memberDto) {
 		}
 		
 	 else { return "redirect:join?error"; }
-	}
+}
+	
 	
 	@GetMapping("/join_finish")
 	public String joinFinish(){
 		return "member/join_finish";
-	}	
+}	
 
 	
 	
