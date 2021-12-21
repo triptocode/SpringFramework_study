@@ -58,7 +58,7 @@ public class MemberDaoImpl implements MemberDao{
 		//그 외의 모든 경우는 실패임을 반환
 		return false;
 	}
-
+// ID 중복 조회 
 	@Override   // MemberDao 에 있는 get메소드 오버라이드후 작성
 	public MemberDto get(String member_id) {
 		MemberDto find = sqlSession.selectOne("mnMember.siFindId", member_id);
