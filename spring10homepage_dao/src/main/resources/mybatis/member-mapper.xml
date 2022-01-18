@@ -38,21 +38,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<!-- "java.lang.String" 이지만  string 별칭존재 , mybatis-manual 참고-->
 	<!-- member_id가 String 으로 설정했었기에 parameterType="string"   -->
-	<select id ="siFindId" parameterType="string" resultType="TypeMemberDto">
+	<select id ="siFindId" parameterType="string" resultType="typeMemberDto">
 	SELECT * FROM member WHERE member_id = #{member_id}
 	</select>
 
   <!-- AdminController와 함께 회원목록 조회 구현하기 -->
-    <select id = "siAdminMemberList" resultType = "TypeMemberDto">
+    <select id = "siAdminMemberList" resultType = "typeMemberDto">
     SELECT * FROM member ORDER BY member_id ASC 
     </select>
   <!-- member_id 가 한개이상 (0>) 이면   로그인 성공 -->
-    <select id ="siLogin1" parameterType="TypeMemberDto" resultType="int">
+    <select id ="siLogin1" parameterType="typeMemberDto" resultType="int">
     SELECT count(*) FROM member
     WHERE member_id=#{member_id} and member_pw=#{member_pw}
     </select>
     
-     <select id ="siLogin2" parameterType="TypeMemberDto" resultType="TypeMemberDto">
+     <select id ="siLogin2" parameterType="typeMemberDto" resultType="typeMemberDto">
     SELECT * FROM member
     WHERE member_id=#{member_id} and member_pw=#{member_pw}
     </select>
