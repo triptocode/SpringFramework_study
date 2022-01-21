@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kk.spring10_2.entity.BoardDto;
+import com.kk.spring10_2.repository.BoardDao;
 
 @Controller
 @RequestMapping("/board")
@@ -20,6 +23,9 @@ public class BoardController {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private BoardDao boardDao;
 
 	@GetMapping("/list")
 	public String boardList(Model model)
@@ -67,6 +73,20 @@ public class BoardController {
 		return "board/list";
 	}
 	
+	// ±€ ¿€º∫
+	@GetMapping("/write")
+	public String write() 
+	{
+		return "boad/write";
+	}
+	@PostMapping("/write")
+	public String write(@ModelAttribute BoardDto boardDto, 
+			             RedirectAttributes redirectAttr) 
+	{
+		int num = boardDao.write(boardDto);
+		// return "redirect:content?baord_no="+num;
+		redirectAttr.addAttribute(board_no, num);
+		return "redirect:content";
+	}
 	
-
 }
