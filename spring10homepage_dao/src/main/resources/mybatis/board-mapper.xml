@@ -54,11 +54,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<!-- 상세글 보기 -->
 	<select id="selectView" resultType="aliasBoardDto" parameterType="int">
 		SELECT * FROM board WHERE board_no = #{board_no}
 	</select>
 	
-	<!-- 조회수 증가 -->
+	<!-- 조회수 증가 : 조회수 컬럼인 board_read에 +1  -->
 	<update id="updateViewUp" parameterType="int">
 		UPDATE board 
 		SET board_read=board_read+1
