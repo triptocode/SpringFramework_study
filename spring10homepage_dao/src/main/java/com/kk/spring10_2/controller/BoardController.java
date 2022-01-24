@@ -30,9 +30,9 @@ public class BoardController {
 	@GetMapping("/list")
 	public String boardList(Model model)
 	
-	{ List<BoardDto> boardList =
+	{ List<BoardDto> listBoardDto =
 	         sqlSession.selectList("mnBoard.siBoardList");
-	model.addAttribute("modelList",boardList);
+	model.addAttribute("jspListBoardDto",listBoardDto);
 	// 위의 key값 "modelList"는 JSP파일 items= "${modelList}"와 일치해야 맵핑된다. 
 	return "board/list";
 	}
@@ -46,17 +46,17 @@ public class BoardController {
 			                  @RequestParam String keyword,
 			                  Model model
 			                  ) {
-		Map<String, String> param = new HashMap<>();
-		param.put("type",type);
-		param.put("keyword", keyword);
-		List<BoardDto> boardList2 = 
-				sqlSession.selectList("mnBoard.siBoardSearch",param);
-        model.addAttribute("modelList", boardList2);
-		// 위의 key값 "modelList"는 JSP파일 items= "${modelList}"와 일치해야 맵핑된다. ;
+		Map<String, String> map = new HashMap<>();
+		map.put("type",type);
+		map.put("keyword", keyword);
+		List<BoardDto> listBoardDto = 
+				sqlSession.selectList("mnBoard.siBoardSearch",map);
+        model.addAttribute("jspListBoardDto", listBoardDto);
+		// Controller model의 key값 "jspListBoardDto"는 
+        // JSP파일 items= "${modelList}"와 일치해야 맵핑된다. ;
 		return "board/list";
 	}
 	
-	//
 	// 조회 및 검색 통합 구현 : 검색은 안할수도 있으니 required=false 매퍼도 if 조건추가 
 	// Map<String, String> , Map<String, Object> 모두 잘 작동
 	@RequestMapping("/listSearch")
@@ -67,26 +67,36 @@ public class BoardController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("type",type);
 		map.put("keyword", keyword);
-		List<BoardDto> boardList3 = sqlSession.selectList("mnBoard.siListSearch",map);
-        model.addAttribute("modelList", boardList3);
+		List<BoardDto> listBoardDto = sqlSession.selectList("mnBoard.siListSearch",map);
+        model.addAttribute("jspListBoardDto", listBoardDto);
 		
 		return "board/list";
 	}
 	
 	// 글 작성
 	@GetMapping("/write")
-	public String write() 
-	{
-		return "boad/write";
+	public String write() {
+		return "board/write";
 	}
 	@PostMapping("/write")
-	public String write(@ModelAttribute BoardDto boardDto, 
-			             RedirectAttributes redirectAttr) 
-	{
-		int num = boardDao.write(boardDto);
-		// return "redirect:content?baord_no="+num;
-		redirectAttr.addAttribute(board_no, num);
+	public String write(
+			@ModelAttribute BoardDto boardDto,
+			//이 도구는 redirect 시 파라미터를 첨부하는 역할을 한다
+			RedirectAttributes redirectAttr) 
+	{		
+		int no = boardDao.write(boardDto);			
+		redirectAttr.addAttribute("board_no", no);
 		return "redirect:content";
+	}
+	
+	
+	@GetMapping("/content")
+	public String content(
+			@RequestParam int board_no,
+			Model model) {
+		BoardDto boardDto = boardDao.viewUp(board_no);
+		model.addAttribute("ContentJspBoardDto", boardDto);		
+		return "board/content";
 	}
 	
 }

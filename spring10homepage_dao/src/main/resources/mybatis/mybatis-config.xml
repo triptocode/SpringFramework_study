@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  </settings>
  <typeAliases>
    <typeAlias type="com.kk.spring10_2.entity.MemberDto" alias="typeMemberDto"/>
-   <typeAlias type="com.kk.spring10_2.entity.BoardDto" alias="typeBoardDto"/> 
+   <typeAlias type="com.kk.spring10_2.entity.BoardDto" alias="aliasBoardDto"/> 
  </typeAliases>
 </configuration>
 
