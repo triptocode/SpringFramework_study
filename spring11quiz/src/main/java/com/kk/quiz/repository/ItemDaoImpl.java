@@ -31,8 +31,8 @@ public class ItemDaoImpl implements ItemDao{
 	@Override
 	public List<ItemDto> getList(String col, String order) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("col", col);
-		map.put("order", order);
+		map.put("col", col);      // 정렬기준 항목 
+		map.put("order", order);  // 순서 : 내림차순, 오름차순 
 		List<ItemDto> list = sqlSession.selectList("item.getList2", map);
 		return list;
 	}

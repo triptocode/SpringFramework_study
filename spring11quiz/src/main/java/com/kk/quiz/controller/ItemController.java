@@ -24,18 +24,20 @@ public class ItemController {
 	
 	@GetMapping("/")
 	public String home() {
-//		return "/WEB-INF/views/item/home.jsp";
+		
 		return "item/home";
 	}
 	
 	@GetMapping("/add")
 	public String add() {
-//		return "/WEB-INF/views/item/add.jsp";
+		
 		return "item/add";
 	}
 	
 	@PostMapping("/add")
 	public String add(@ModelAttribute ItemDto itemDto) {
+                      // requestMapping을 세번적어서 세개를 받을수도 있지만
+	                  //ModelAttribute를 한번적고 모두 받는 방법사용
 		itemDao.insert(itemDto);
 		return "redirect:list";
 	}
