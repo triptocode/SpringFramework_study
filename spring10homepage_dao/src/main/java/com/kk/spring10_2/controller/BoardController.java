@@ -33,7 +33,7 @@ public class BoardController {
 	{ List<BoardDto> listBoardDto =
 	         sqlSession.selectList("mnBoard.siBoardList");
 	model.addAttribute("jspListBoardDto",listBoardDto);
-	// 위의 key값 "modelList"는 JSP파일 items= "${modelList}"와 일치해야 맵핑된다. 
+	// 위의 key값 "jspListBoardDto"는 JSP파일 items= "${jspListBoardDto}"와 일치해야 맵핑된다. 
 	return "board/list";
 	}
 	
@@ -53,7 +53,7 @@ public class BoardController {
 				sqlSession.selectList("mnBoard.siBoardSearch",map);
         model.addAttribute("jspListBoardDto", listBoardDto);
 		// Controller model의 key값 "jspListBoardDto"는 
-        // JSP파일 items= "${modelList}"와 일치해야 맵핑된다. ;
+        // JSP파일 items= "${jspListBoardDto}"와 일치해야 맵핑된다. ;
 		return "board/list";
 	}
 	
@@ -67,17 +67,20 @@ public class BoardController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("type",type);
 		map.put("keyword", keyword);
-		List<BoardDto> listBoardDto = sqlSession.selectList("mnBoard.siListSearch",map);
+		List<BoardDto> listBoardDto =
+				sqlSession.selectList("mnBoard.siListSearch",map);
         model.addAttribute("jspListBoardDto", listBoardDto);
 		
 		return "board/list";
 	}
 	
-	// 글 작성
+	// 글 작성 양식 페이지
 	@GetMapping("/write")
 	public String write() {
 		return "board/write";
 	}
+	// 글 작성한 데이터를 <form action="write" method="post">로 jsp로부터 전달 받고 처리하는 메서드
+	// <form action="controller의 url"> 의미하고 post 는 PostMapping 
 	@PostMapping("/write")
 	public String write(
 			@ModelAttribute BoardDto boardDto,
@@ -86,7 +89,7 @@ public class BoardController {
 	{		
 		int no = boardDao.write(boardDto);			
 		redirectAttr.addAttribute("board_no", no);
-		return "redirect:content";
+		return "redirect:content"; // 글작성 완료후 상세글 화면으로 redirect ~
 	}
 	
 	
