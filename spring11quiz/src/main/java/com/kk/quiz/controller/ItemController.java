@@ -42,4 +42,10 @@ public class ItemController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/list")
+	@GetMapping("/detail")
+	@GetMapping("/edit")
+	@PostMapping("/edit")
+	@GetMapping("/delete")
+	
 }
