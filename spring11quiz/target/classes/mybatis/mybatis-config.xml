@@ -10,9 +10,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<setting name="lazyLoadingEnabled" value="true"/>
 		<setting name="autoMappingBehavior" value="FULL"/>
  </settings>
- <typeAliases>
-     <typeAlias type="com.kk.spring11quiz.entity.MenuDto" alias="mdto"/>
- </typeAliases>
 </configuration>
 
 
