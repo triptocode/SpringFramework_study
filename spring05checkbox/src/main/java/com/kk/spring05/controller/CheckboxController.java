@@ -21,8 +21,8 @@ public class CheckboxController {
 	
 	@PostMapping("/fruit2")
 	public String threefruit2(
-		// request get parametor로 못받는다
-		// 그래서 jsp, servlet에서는 request get parametor values로
+		// request get parameter로 못받는다
+		// 그래서 jsp, servlet에서는 request get parameter values로
    
 			
   //@RequestParam String[] fruit) {
