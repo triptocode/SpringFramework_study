@@ -8,32 +8,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
-
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
-	
 	@Autowired
-	private JdbcTemplate jt;
-	
+	private JdbcTemplate jt;	
 @GetMapping("/insert")
 public String insert() {
 	System.out.println(jt);
 	return "menu/insert"; }
-
 @PostMapping("/insert")
 public String insert(
 		@RequestParam String name,
 		@RequestParam int price) {
 //	System.out.println("name = " + name);
-//	System.out.println("price = " + price);	
-	
+//	System.out.println("price = " + price);		
 	String sql = "INSERT INTO menu VALUES(?, ?)";
 	Object[] param = {name, price};
-	jt.update(sql, param);
-	
+	jt.update(sql, param);	
 //	return "redirect:insert";
 	return "redirect:/menu/insert";
 }
