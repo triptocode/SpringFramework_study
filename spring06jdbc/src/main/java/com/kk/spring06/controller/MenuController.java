@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/menu")
 public class MenuController {
 	@Autowired
-	private JdbcTemplate jt;	
+	private JdbcTemplate jdbcTemplate;	
+	
 @GetMapping("/insert")
 public String insert() {
-	System.out.println(jt);
+	System.out.println(jdbcTemplate);
 	return "menu/insert"; }
+
 @PostMapping("/insert")
 public String insert(
 		@RequestParam String name,
@@ -24,8 +26,8 @@ public String insert(
 //	System.out.println("name = " + name);
 //	System.out.println("price = " + price);		
 	String sql = "INSERT INTO menu VALUES(?, ?)";
-	Object[] param = {name, price};
-	jt.update(sql, param);	
+	Object[] param = {name, price}; // new Object{name, price}; µµ °¡´É
+	jdbcTemplate.update(sql, param);	
 //	return "redirect:insert";
 	return "redirect:/menu/insert";
 }
