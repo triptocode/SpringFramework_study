@@ -28,7 +28,8 @@ public String insert(
 	String sql = "INSERT INTO menu VALUES(?, ?)";
 	Object[] param = {name, price}; // new Object{name, price}; µµ °¡´É
 	jdbcTemplate.update(sql, param);	
-//	return "redirect:insert";
+
+	//	return "redirect:insert";
 	return "redirect:/menu/insert";
 }
 

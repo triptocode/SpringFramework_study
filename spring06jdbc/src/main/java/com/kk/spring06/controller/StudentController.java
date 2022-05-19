@@ -19,22 +19,22 @@ public class StudentController {
 	
 	@GetMapping("/register1")
 	public String rg1() 
-	{	return "student/register";
-	}
-	
+	{	return "student/register"; }
 	
 	@PostMapping ("/register2")
-	public String rg2( @ModelAttribute StudentDto st)
-	{ String a = "insert into student values (?,?,?,sysdate)"; // student 테이블에
-	  Object[] b = {st.getName(),st.getAge(),st.getScore() }; // 아래 3가지 데이터정보를 저장
-	  jt.update(a, b);
-	  return "redirect:register3";   //  " register3 "는 공용주소아래에 url주소넣겠다 =spring06/student/register3
-	}                               //  " /register3 "는 spring06 바로뒷자리 url주소넣겠다는말 = spring06/register3
+	public String rg2( 
+			@ModelAttribute StudentDto st){
+	String sql = "insert into student values (?,?,?,sysdate)"; // student 테이블에
+	Object[] param = {st.getName(),st.getAge(),st.getScore() }; // 아래 3가지 데이터정보를 저장
+	  jt.update(sql, param);
+	  return "redirect:register3";   
+	  //  " register3 " = spring06/student/register3
+	  // " /register3 "  = spring06/register3
+	}                               //  
 	
 	@GetMapping("/register3")       
 	public String rg_finish() 
-	{return "student/register_finish";
-	}
+	{return "student/register_finish"; }
 	
 }
 
