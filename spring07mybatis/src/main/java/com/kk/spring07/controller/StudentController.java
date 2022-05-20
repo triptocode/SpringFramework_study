@@ -24,7 +24,8 @@ public class StudentController {
 	}
 	
 	@PostMapping("/regist")
-	public String regist(@ModelAttribute StudentDto st) {
+	public String regist(
+			@ModelAttribute StudentDto st) {
 		//데이터베이스 등록 
 		// = mybatis의 sqlSession을 이용하여 mapper 호출 및 실행
 		// sqlSession.insert("구문이름", 데이터);
