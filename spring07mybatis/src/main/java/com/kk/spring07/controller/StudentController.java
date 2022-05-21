@@ -23,13 +23,13 @@ public class StudentController {
 		return "student/regist";
 	}
 	
-	@PostMapping("/regist")
+	@PostMapping("/regist2")
 	public String regist(
 			@ModelAttribute StudentDto st) {
 		//데이터베이스 등록 
 		// = mybatis의 sqlSession을 이용하여 mapper 호출 및 실행
 		// sqlSession.insert("구문이름", 데이터);
-		sqlSession.insert("mn.i", st); //( mn =mapper-namespcae , i=id)
+		sqlSession.insert("mn.insertId", st); //( mn =mapper-namespcae , i=id)
 		return "redirect:regist";
 	}
 	

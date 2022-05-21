@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="mn">
 
 <!-- 	<insert id="regist" parameterType="com.kk.spring07.entity.StudentDto"> -->
-	<insert id="i" parameterType="student">
+	<insert id="insertId" parameterType="student">  <!-- mybatis-config의 alias -->
 		INSERT INTO student(
 			name, age, score, when
 		) VALUES(
