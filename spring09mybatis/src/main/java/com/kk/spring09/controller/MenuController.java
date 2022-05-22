@@ -1,5 +1,4 @@
 package com.kk.spring09.controller;
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,22 +17,22 @@ import com.kk.spring09.entity.MenuDto;
 public class MenuController {
 
 	@Autowired
-	private SqlSession ss;
+	private SqlSession sqlSession;
 	
 	@GetMapping("/rg1")
-	public String db1 () {
+	public String db1 () {		
 		return "menu/register"; }
 	
 	@PostMapping("/rg2")
 //	public String insert(@RequestParam String name, @RequestParam int price) {
 	public String db2 (@ModelAttribute MenuDto menuDto) {
-		ss.insert("mn.i1", menuDto);
+		sqlSession.insert("mn.insertId", menuDto);
 		return "redirect:rg1";  }
 	
 	@GetMapping("/list")
 	public String list(Model model) {
 		
-		List<MenuDto> list = ss.selectList("mn.i2");
+		List<MenuDto> list = sqlSession.selectList("mn.selectId");
 		model.addAttribute("mlist", list);
 		return "menu/list"; }
 }

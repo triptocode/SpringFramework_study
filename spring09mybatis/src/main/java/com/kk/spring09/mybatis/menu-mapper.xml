@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mn">
 <!-- <insert id="i1" parameterType="com.kh.spring09.entity.MenuDto"> -->
-	 <insert id="i1" parameterType="mdto">
+	 <insert id="insertId" parameterType="mdto">
 		INSERT INTO menu ( name, price ) 
 		VALUES( #{name}, #{price} )
 	 </insert>
-	<select id="i2" resultType="mdto">
+	<select id="selectId" resultType="mdto">
 		SELECT * FROM menu ORDER BY name ASC
 	</select>
 </mapper>
