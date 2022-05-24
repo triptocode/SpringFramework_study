@@ -33,6 +33,7 @@ public class MenuController {
 	public String list(Model model) {
 		
 		List<MenuDto> list = sqlSession.selectList("mn.selectId");
+		System.out.println(list);
 		model.addAttribute("mlist", list);
 		return "menu/list"; }
 }

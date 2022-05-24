@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO menu ( name, price ) 
 		VALUES( #{name}, #{price} )
 	 </insert>
+	
 	<select id="selectId" resultType="mdto">
 		SELECT * FROM menu ORDER BY name ASC
 	</select>

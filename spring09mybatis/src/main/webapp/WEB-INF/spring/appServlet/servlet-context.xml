@@ -28,7 +28,7 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 
 <resources location= "/resources/" mapping="/res/**"> </resources>
 
-	<beans:bean id="driverManager" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<beans:bean id="jdbcSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver"></beans:property>
 		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></beans:property>
 		<beans:property name="username" value="c##kh"></beans:property>
@@ -47,7 +47,7 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<!-- DI(Dependency Injection) : 필요한 도구를 주입시키는 것 -->
-		<beans:property name="dataSource" ref="driverManager"></beans:property>
+		<beans:property name="dataSource" ref="jdbcSource"></beans:property>
 	</beans:bean>
 	
 	
@@ -56,13 +56,15 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 	     	- sqlSessionTemplate : 구문 실행을 위한 템플릿을 제공하는 도구
 	     	- sqlSession : 실제로 SQL 구문을 실행시키는 도구
 	 -->
+
+	
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 연결을 위한 도구를 참조 설정 -->
 		<beans:property name="dataSource" ref="dbcpSource"></beans:property>
 		<!-- myBatis 설정파일의 위치를 설정 -->
-		<beans:property name="configLocation" value="classpath:/com/kk/spring09/mybatis/mybatis-config.xml"></beans:property>
+		<beans:property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></beans:property>
 		<!-- 실제 실행할 명령 파일 위치를 설정 -->
-		<beans:property name="mapperLocations" value="classpath:/com/kk/spring09/mybatis/**/*-mapper.xml"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:/mybatis/**/*-mapper.xml"></beans:property>
 	</beans:bean>
 	
 	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
