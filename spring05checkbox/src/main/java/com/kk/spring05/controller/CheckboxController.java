@@ -12,28 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping ("/checkbox")
 public class CheckboxController {
-	
 	@GetMapping("/fruit1")
-	public String threefruit1() {
-		
-		return "fruit";
-	}
-	
+	public String fruitType1() {		
+		return "fruit";        }	
 	@PostMapping("/fruit2")
-	public String threefruit2(
-		// request get parameter로 못받는다
-		// 그래서 jsp, servlet에서는 request get parameter values로
-   
-			
-  //@RequestParam String[] fruit) {
-  @RequestParam List <String> fruit) {   //jsp�뿉 input name ="fruit"瑜� 蹂��닔濡� �궗�슜�븳�떎 
-  // fruit는 form의 name 값 	
-		for(String f: fruit) {
-			System.out.println("f="+f);
-		}
-		return "redirect:fruit1";
-		                                                                           
-	}
-	
-
+	public String fruitType2 ( @RequestParam List <String> nameFruit) 
+	{ //public String threefruit2( @Requespublic String[] fruit) {
+      //  jsp, servlet에서는 request get parameter values로
+      // request get parameter로 못받는다       
+      // List 변수 nameFruit 는 jsp의 input name ="nameFruit" 	
+		for(String f: nameFruit) {
+			System.out.println("f="+f); // Console에 출력하여 확인가능	
+		    }
+		return "redirect:fruit1"; // redirect: 다시 요청할url 
+        // (post의 뷰JSP 따로생성하지 않고 보여줄화면의 기존URL로 재요청)                                                                           
+	}	
 }
