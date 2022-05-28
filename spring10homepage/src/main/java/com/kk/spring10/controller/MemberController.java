@@ -35,7 +35,9 @@ public String join(@ModelAttribute MemberDto memberDto) {
      MemberDto findId = 
 	 sqlSession.selectOne("mnMember.siFindId", memberDto.getMember_id()); 
 	         // selectOne(    query_id       ,     조건    ) query_id 에 대한 select문을 실행하면서 조건(쿼리문에서 사용할 인자)를 전달
-    System.out.println(findId);
+    System.out.println(findId); 
+    // null 또는 
+    //com.kk.spring10.entity.MemberDto@5a97f8b1  ,  com.kk.spring10.entity.MemberDto@45f95a7
      if(findId==null) { // DB에 중복되는 id가 없으면 , 다음과 같이 pw 암호화 한다
     	 String enc = encoder.encode(memberDto.getMember_pw()); // pw 암호화
     	 memberDto.setMember_pw(enc); // 암호화된 pw 덮어쓰기 
