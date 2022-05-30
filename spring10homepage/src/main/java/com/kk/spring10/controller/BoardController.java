@@ -19,7 +19,7 @@ import com.kk.spring10.entity.BoardDto;
 public class BoardController {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSession;             // servlet-context 에 mybatis사용을위한 SqlSession을 등록해뒀고 준비된 sqlsession을 연결할때 Autowired를 사용함
 
 	@GetMapping("/list")
 	public String boardList(Model model)
